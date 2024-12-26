@@ -1,0 +1,44 @@
+{
+  "name": "commit-mate",
+  "displayName": "Commit-Mate",
+  "description": "A VS Code extension that tracks project workflows, generates summaries, and manages GitHub integration to streamline repository updates and build a strong project history.",
+  "version": "0.0.1",
+  "publisher": "Team Insiders",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./src/extension.js",
+  "type": "commonjs",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.authenticate",
+        "title": "Authenticate with GitHub"
+      },
+      {
+        "command": "extension.checkProject",
+        "title": "Check Project Repository"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.96.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.16.0"
+  },
+  "dependencies": {
+    "open": "^10.1.0",
+    "vscode": "^1.1.37"
+  }
+}
