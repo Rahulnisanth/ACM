@@ -8,19 +8,16 @@
     "vscode": "^1.96.0"
   },
   "activationEvents": [
-    "onStartupFinished"
+    "onStartupFinished",
+    "workspaceContains:.git"
   ],
   "main": "./src/extension.js",
   "type": "commonjs",
   "contributes": {
     "commands": [
       {
-        "command": "extension.authenticate",
-        "title": "Authenticate with GitHub"
-      },
-      {
-        "command": "extension.checkProject",
-        "title": "Check Project Repository"
+        "command": "extension.checkGitStatus",
+        "title": "Check Git Status for the current folder"
       }
     ]
   },
