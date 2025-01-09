@@ -5,7 +5,7 @@ const getSourceChanges = require("./getSourceChanges");
 
 function createReadmeLogs(currentProjectPath, projectHistoryPath) {
   const now = new Date();
-  const endTime = new Date(now.getTime() + 1 * 60 * 1000);
+  const endTime = new Date(now.getTime() + 30 * 60 * 1000);
 
   const formatTime = (date) => {
     return date.toLocaleString("en-US", {

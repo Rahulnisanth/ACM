@@ -14,7 +14,7 @@ function startProjectTracking(currentProjectPath) {
     }
     setInterval(() => {
       createReadmeLogs(currentProjectPath, projectHistoryPath);
-    }, 1 * 60 * 1000);
+    }, 30 * 60 * 1000);
   } catch (error) {
     vscode.window.showErrorMessage(
       `Failed to create 'project-history' folder: ${error.message}`
