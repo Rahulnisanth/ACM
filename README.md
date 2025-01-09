@@ -1,65 +1,55 @@
-# commit-mate README
+# Commit Mate
 
-This is the README for your extension "commit-mate". After writing up a brief description, we recommend including the following sections.
+## Project Overview
+
+Commit Mate is a VS Code extension designed to help developers track their workflow and automatically generate detailed commit logs for each work session. This extension helps organize project history, track file changes, and push logs to GitHub without manual intervention.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### 1. Project Initialization
 
-For example if there is an image subfolder under your extension project workspace:
+#### Detect Project Opened in VS Code
+- The extension checks for the existence of a `project-history` folder each time a user opens a project in VS Code.
 
-\!\[feature X\]\(images/feature-x.png\)
+#### Auto/Prompted Initialization
+- If the folder is not found, the user will be prompted to initialize the project history folder automatically.
+- If the folder already exists, no action is required.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### 2. File Change Tracking
 
-## Requirements
+#### Automatic Tracking
+- The extension monitors file changes within the project folder every 30 minutes.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+#### Debouncing for Short Sessions
+- If the user switches projects or stops working within 30 minutes, the extension debounces and handles partial work summaries appropriately.
 
-## Extension Settings
+### 3. Generate Workflow Summary
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+#### Create/Update README File
+- The extension automatically creates or updates a `README.md` file inside the `project-history` folder with a filename formatted as `<Date> - <Start time> to <End time> log`.
+- The README includes:
+  - Date and time of the session.
+  - List of files modified, added, or deleted.
+  - A short summary of the work done.
 
-For example:
+#### Example README Format:
 
-This extension contributes the following settings:
+```
+Project Logs
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+Date: 2024-12-24
+Time: 10:00 AM - 10:30 AM
 
-## Known Issues
+Summary:
+- M main.js (20 lines added, 5 lines removed)
+- C README.md
+- D temp.txt
+```
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### 4. Push Changes to GitHub
 
-## Release Notes
+#### Selective Push
+- Only the `project-history` folder is pushed to the GitHub repository associated with the project.
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+#### Automated Push
+- The push occurs automatically after generating the summary, without requiring manual intervention.
