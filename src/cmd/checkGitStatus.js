@@ -3,7 +3,7 @@ const { execSync } = require("child_process");
 const checkHistoryFolder = require("./checkHistoryFolder");
 const getRemoteAddress = require("../pkg/common/getRemoteAddress");
 const getWorkspacePath = require("../pkg/common/getWorkspacePath");
-const startProjectTracking = require("../features/startProjectTracking");
+const startProjectTracking = require("../features/projectTracking/startProjectTracking");
 const connectGitRepo = require("../features/projectTracking/connectGitRepo");
 
 // Entry point of the extension

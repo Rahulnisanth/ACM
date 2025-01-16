@@ -4,6 +4,7 @@ const { join } = require("path");
 const getChanges = require("../../pkg/common/getChanges");
 const formatDate = require("../../pkg/formats/formatDate");
 const formatTime = require("../../pkg/formats/formatTime");
+const makeReadOnly = require("../../pkg/common/makeReadOnly");
 
 function createReadmeLogs(currentProjectPath, projectHistoryPath) {
   const date = formatDate(new Date());
@@ -34,6 +35,7 @@ function createReadmeLogs(currentProjectPath, projectHistoryPath) {
 
   try {
     writeFileSync(filePath, logContent);
+    makeReadOnly(filePath);
     vscode.window.showInformationMessage(`Log file created: ${fileName}`);
   } catch (error) {
     vscode.window.showErrorMessage(

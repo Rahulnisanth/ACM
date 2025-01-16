@@ -1,7 +1,7 @@
 const vscode = require("vscode");
 const { mkdirSync, existsSync } = require("fs");
 const { join } = require("path");
-const createReadmeLogs = require("./createLogs/createReadmeLogs");
+const createReadmeLogs = require("../createLogs/createReadmeLogs");
 
 function startProjectTracking(currentProjectPath) {
   const projectHistoryPath = join(currentProjectPath, "project-history");
