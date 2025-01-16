@@ -1,6 +1,6 @@
 const vscode = require("vscode");
 
-async function getCurrentFolderPath() {
+async function getWorkspacePath() {
   const workspaceFolders = vscode.workspace.workspaceFolders;
   if (workspaceFolders && workspaceFolders.length > 0) {
     const currentFolder = workspaceFolders[0].uri.fsPath;
@@ -10,4 +10,4 @@ async function getCurrentFolderPath() {
   }
 }
 
-module.exports = getCurrentFolderPath;
+module.exports = getWorkspacePath;

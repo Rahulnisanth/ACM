@@ -9,23 +9,28 @@ Commit Mate is a VS Code extension designed to help developers track their workf
 ### 1. Project Initialization
 
 #### Detect Project Opened in VS Code
+
 - The extension checks for the existence of a `project-history` folder each time a user opens a project in VS Code.
 
 #### Auto/Prompted Initialization
+
 - If the folder is not found, the user will be prompted to initialize the project history folder automatically.
 - If the folder already exists, no action is required.
 
 ### 2. File Change Tracking
 
 #### Automatic Tracking
+
 - The extension monitors file changes within the project folder every 30 minutes.
 
 #### Debouncing for Short Sessions
+
 - If the user switches projects or stops working within 30 minutes, the extension debounces and handles partial work summaries appropriately.
 
 ### 3. Generate Workflow Summary
 
 #### Create/Update README File
+
 - The extension automatically creates or updates a `README.md` file inside the `project-history` folder with a filename formatted as `<Date> - <Start time> to <End time> log`.
 - The README includes:
   - Date and time of the session.
@@ -49,7 +54,9 @@ Summary:
 ### 4. Push Changes to GitHub
 
 #### Selective Push
+
 - Only the `project-history` folder is pushed to the GitHub repository associated with the project.
 
 #### Automated Push
+
 - The push occurs automatically after generating the summary, without requiring manual intervention.

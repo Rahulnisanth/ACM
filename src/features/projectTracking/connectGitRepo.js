@@ -1,6 +1,6 @@
 const vscode = require("vscode");
 
-async function promptCreateRepository() {
+async function connectGitRepo() {
   const createRepo = await vscode.window.showInformationMessage(
     "This workspace is not connected to GitHub. Would you like to create a repository?",
     "Yes",
@@ -13,4 +13,4 @@ async function promptCreateRepository() {
   }
 }
 
-module.exports = promptCreateRepository;
+module.exports = connectGitRepo;

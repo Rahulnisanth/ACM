@@ -1,7 +1,7 @@
 const vscode = require("vscode");
 const { mkdirSync, existsSync } = require("fs");
 const { join } = require("path");
-const createReadmeLogs = require("./createReadmeLogs");
+const createReadmeLogs = require("./createLogs/createReadmeLogs");
 
 function startProjectTracking(currentProjectPath) {
   const projectHistoryPath = join(currentProjectPath, "project-history");
@@ -14,7 +14,7 @@ function startProjectTracking(currentProjectPath) {
     }
     setInterval(() => {
       createReadmeLogs(currentProjectPath, projectHistoryPath);
-    }, 30 * 60 * 1000);
+    }, 10000);
   } catch (error) {
     vscode.window.showErrorMessage(
       `Failed to create 'project-history' folder: ${error.message}`

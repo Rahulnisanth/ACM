@@ -2,7 +2,7 @@ const vscode = require("vscode");
 const { join } = require("path");
 const { existsSync, lstatSync } = require("fs");
 
-async function checkProjectHistoryFolder() {
+async function checkHistoryFolder() {
   const workspaceFolders = vscode.workspace.workspaceFolders;
   if (!workspaceFolders || workspaceFolders.length === 0) {
     vscode.window.showInformationMessage("No workspace folder is open.");
@@ -27,4 +27,4 @@ async function checkProjectHistoryFolder() {
   return false;
 }
 
-module.exports = checkProjectHistoryFolder;
+module.exports = checkHistoryFolder;

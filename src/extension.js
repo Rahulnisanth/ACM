@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-const checkGitStatus = require("./commands/checkGitStatus");
+const checkGitStatus = require("./cmd/checkGitStatus");
 
 function activate(context) {
   const checkGitStatusCommand = vscode.commands.registerCommand(
@@ -8,7 +8,8 @@ function activate(context) {
       await checkGitStatus();
     }
   );
-  // Triggered when a new window is opened
+  // Triggered every-time when a new window is opened
+  // or workspace is restarted
   checkGitStatus();
   context.subscriptions.push(checkGitStatusCommand);
 }
