@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**Auto Commit Mate** (ACM) is a productivity-focused extension for Visual Studio Code designed to automate the process of committing changes to your Git repository. ACM helps developers track their workflow, generate detailed commit logs, and push them to GitHub with minimal manual intervention. The extension ensures that every change is committed with a timestamp and an auto-generated commit message, saving time and reducing human error.
+**Auto Commit Mate** (ACM) is a productivity-boosting extension for Visual Studio Code that simplifies your workflow. With ACM, you can effortlessly ensure every change in your project is tracked and committed to your repository. This extension automatically commits and pushes changes to GitHub at customizable time intervals, helping you maintain an active and vibrant GitHub contribution graph.
 
 ## Features
 
@@ -73,7 +73,7 @@ Project Logs
 Date: Jan 12, 2025
 Time: 11:00 PM to 11:30 PM
 
-Changes made to the following files:
+Changes:
 - file1.js
 - file2.html
 
