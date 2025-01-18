@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.2] - 2025-01-18
+## [1.0.3] - 2025-01-18
 
 ### Added
 
@@ -19,20 +19,3 @@
 ### Changed
 
 - N/A (First release)
-
----
-
-## [1.0.2] - 2025-01-18
-
-### Added
-
-- Valid/Adaptable time durations for auto-committing
-- Refactored the extension documentation
-
-### Fixed
-
-- Cleanup the codebase for better understanding
-
-### Changed
-
-- Error handling logs of the extension
