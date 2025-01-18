@@ -5,12 +5,14 @@ const getChanges = require("../../pkg/common/getChanges");
 const formatDate = require("../../pkg/formats/formatDate");
 const formatTime = require("../../pkg/formats/formatTime");
 const formatReadme = require("../../pkg/formats/formatReadme");
-const commitAndPush = require("../autoCommitAndPush/commitAndPush");
+const commitAndPush = require("../autoCommit/commitAndPush");
 
-function createReadmeLogs(currentProjectPath, projectHistoryPath) {
+function createReadmeLogs(currentProjectPath, projectHistoryPath, duration) {
   const date = formatDate(new Date());
   const startTime = formatTime(new Date());
-  const endTime = formatTime(new Date(new Date().getTime() + 10000));
+  const endTime = formatTime(
+    new Date(new Date().getTime() + duration * 60 * 1000)
+  );
 
   const fileName = `[${date}: ${startTime} to ${endTime}].md`;
   const filePath = join(projectHistoryPath, fileName);
@@ -22,10 +24,10 @@ function createReadmeLogs(currentProjectPath, projectHistoryPath) {
     ? readFileSync(lastChangesFile, "utf-8")
     : "";
 
-  // Skip duplicate logs
-  if (changes === lastLoggedChanges) {
+  // Skip duplicate or nil change logs
+  if (changes === lastLoggedChanges || changes === "No changes detected") {
     vscode.window.showInformationMessage(
-      "No new changes detected since the last log. Skipping log creation."
+      "No new changes detected, Skipping log creation."
     );
     return;
   }

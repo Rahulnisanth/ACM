@@ -1,8 +1,8 @@
-# Commit Mate
+# Auto Commit Mate - ACM
 
 ## Project Overview
 
-Commit Mate is a VS Code extension designed to help developers track their workflow and automatically generate detailed commit logs for each work session. This extension helps organize project history, track file changes, and push logs to GitHub without manual intervention.
+Auto Commit Mate - ACM is a VS Code extension designed to help developers track their workflow and automatically generate detailed commit logs for each work session. This extension helps organize project history, track file changes, and push logs to GitHub without manual intervention.
 
 ## Features
 
@@ -42,13 +42,16 @@ Commit Mate is a VS Code extension designed to help developers track their workf
 ```
 Project Logs
 
-Date: 2024-12-24
+Date: Jan 18, 2025
 Time: 10:00 AM - 10:30 AM
 
+Changes:
+- Modified file1.js
+- Added file2.js
+- Removed file3.js
+
 Summary:
-- M main.js (20 lines added, 5 lines removed)
-- C README.md
-- D temp.txt
+Removed file3.js
 ```
 
 ### 4. Push Changes to GitHub

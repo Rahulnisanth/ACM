@@ -3,7 +3,7 @@ const { mkdirSync, existsSync } = require("fs");
 const { join } = require("path");
 const createReadmeLogs = require("../createLogs/createReadmeLogs");
 
-function startProjectTracking(currentProjectPath) {
+function startProjectTracking(currentProjectPath, duration) {
   const projectHistoryPath = join(currentProjectPath, "project-history");
   try {
     if (!existsSync(projectHistoryPath)) {
@@ -13,8 +13,8 @@ function startProjectTracking(currentProjectPath) {
       );
     }
     setInterval(() => {
-      createReadmeLogs(currentProjectPath, projectHistoryPath);
-    }, 10000);
+      createReadmeLogs(currentProjectPath, projectHistoryPath, duration);
+    }, duration * 60 * 1000);
   } catch (error) {
     vscode.window.showErrorMessage(
       `Failed to create 'project-history' folder: ${error.message}`

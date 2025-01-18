@@ -1,6 +1,6 @@
 {
-  "name": "commit-mate",
-  "displayName": "Commit-Mate",
+  "name": "auto-commit-mate",
+  "displayName": "Auto Commit Mate - ACM",
   "description": "A VS Code extension that tracks project workflows, generates summaries, and manages GitHub integration to streamline repository updates and build a strong project history.",
   "version": "0.0.1",
   "publisher": "Team Insiders",
@@ -16,8 +16,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.checkGitStatus",
-        "title": "Check Git Status for the current folder"
+        "command": "extension.startAutoCommitter",
+        "title": "Start the Auto-Commit extension"
+      },
+      {
+        "command": "extension.setTimeDuration",
+        "title": "Set time duration for auto-committing logs"
       }
     ]
   },

@@ -5,10 +5,13 @@ const getRemoteAddress = require("../pkg/common/getRemoteAddress");
 const getWorkspacePath = require("../pkg/common/getWorkspacePath");
 const startProjectTracking = require("../features/projectTracking/startProjectTracking");
 const connectGitRepo = require("../features/projectTracking/connectGitRepo");
+const showTimeDurationSelector = require("./showTimeDurationSelector");
 
 // Entry point of the extension
-async function checkGitStatus() {
+async function startAutoCommitter() {
   const folderPath = await getWorkspacePath();
+  // Getting the duration from user
+  const duration = await showTimeDurationSelector();
   // Edge case: No folder is opened on vs-code
   if (!folderPath) {
     vscode.window.showInformationMessage("No workspace folder is open.");
@@ -32,7 +35,7 @@ async function checkGitStatus() {
         if (startTracking === "Yes") {
           // if user permits ??
           // Handle automated log tracking
-          startProjectTracking(folderPath);
+          startProjectTracking(folderPath, duration);
           vscode.window.showInformationMessage("Started tracking logs..");
         } else {
           // if user not permits ??
@@ -42,7 +45,7 @@ async function checkGitStatus() {
       } else {
         // if `project-folder` already exists
         // Handle automated log tracking
-        startProjectTracking(folderPath);
+        startProjectTracking(folderPath, duration);
       }
     } else {
       // if Git Remote not found ??
@@ -50,9 +53,9 @@ async function checkGitStatus() {
       await connectGitRepo();
     }
   } catch (error) {
-    console.error("Error in checkGitStatus:", error);
+    console.error("Error in startAutoCommitter:", error);
     await connectGitRepo();
   }
 }
 
-module.exports = checkGitStatus;
+module.exports = startAutoCommitter;

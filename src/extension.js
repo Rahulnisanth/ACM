@@ -1,23 +1,35 @@
 const vscode = require("vscode");
-const checkGitStatus = require("./cmd/checkGitStatus");
+const startAutoCommitter = require("./cmd/startAutoCommitter");
+const showTimeDurationSelector = require("./cmd/showTimeDurationSelector");
+const getWorkspacePath = require("./pkg/common/getWorkspacePath");
+const startProjectTracking = require("./features/projectTracking/startProjectTracking");
 
 function activate(context) {
-  const checkGitStatusCommand = vscode.commands.registerCommand(
-    "extension.checkGitStatus",
+  const startExtension = vscode.commands.registerCommand(
+    "extension.startAutoCommitter",
     async () => {
-      await checkGitStatus();
+      await startAutoCommitter();
     }
   );
-  // Triggered every-time when a new window is opened
-  // or workspace is restarted
-  checkGitStatus();
-  context.subscriptions.push(checkGitStatusCommand);
+
+  const setTimeDurationCommand = vscode.commands.registerCommand(
+    "extension.setTimeDuration",
+    async () => {
+      const duration = await showTimeDurationSelector();
+      if (duration) {
+        const folderPath = await getWorkspacePath();
+        if (folderPath) {
+          startProjectTracking(folderPath, duration * 60 * 1000);
+        }
+      }
+    }
+  );
+
+  // Register commands to the extension context
+  context.subscriptions.push(startExtension);
+  context.subscriptions.push(setTimeDurationCommand);
 }
 
 function deactivate() {}
 
 module.exports = { activate, deactivate };
-
-// TODO: [medium] implement a feature to pause/play the tracking process
-// TODO: [Approach]: Restore the file contents when user try to edit it!
-// TODO: [low/v2] implement a UI in sidebar for pause/play, tracked histories, etc...
