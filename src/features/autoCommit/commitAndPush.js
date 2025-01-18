@@ -17,11 +17,11 @@ function commitAndPush(repoPath, files) {
     execSync("git push", { cwd: repoPath });
 
     vscode.window.showInformationMessage(
-      "Changes successfully committed and pushed to GitHub."
+      "✅ Workflow logs successfully dumped into GitHub"
     );
   } catch (error) {
     vscode.window.showErrorMessage(
-      `Failed to push changes to GitHub: ${error.message}`
+      `⚠️ Failed to push logs to GitHub: ${error.message}`
     );
   }
 }

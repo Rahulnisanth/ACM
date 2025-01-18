@@ -1,14 +1,14 @@
 const vscode = require("vscode");
-const startAutoCommitter = require("./cmd/startAutoCommitter");
+const startAutoCommitting = require("./cmd/startAutoCommitting");
 const showTimeDurationSelector = require("./cmd/showTimeDurationSelector");
 const getWorkspacePath = require("./pkg/common/getWorkspacePath");
 const startProjectTracking = require("./features/projectTracking/startProjectTracking");
 
 function activate(context) {
   const startExtension = vscode.commands.registerCommand(
-    "extension.startAutoCommitter",
+    "extension.startAutoCommitting",
     async () => {
-      await startAutoCommitter();
+      await startAutoCommitting();
     }
   );
 
@@ -25,7 +25,6 @@ function activate(context) {
     }
   );
 
-  // Register commands to the extension context
   context.subscriptions.push(startExtension);
   context.subscriptions.push(setTimeDurationCommand);
 }

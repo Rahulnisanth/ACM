@@ -1,7 +1,9 @@
 const vscode = require("vscode");
 const { join } = require("path");
 const { existsSync, lstatSync } = require("fs");
-
+/**
+ * Checks whether the project history folders exists or not.
+ */
 async function checkHistoryFolder() {
   const workspaceFolders = vscode.workspace.workspaceFolders;
   if (!workspaceFolders || workspaceFolders.length === 0) {
@@ -10,20 +12,15 @@ async function checkHistoryFolder() {
   }
   for (const folder of workspaceFolders) {
     const folderPath = folder.uri.fsPath;
-    const projectHistoryPath = join(folderPath, "project-history");
+    const projectHistoryPath = join(folderPath, "work-logs");
     if (
       existsSync(projectHistoryPath) &&
       lstatSync(projectHistoryPath).isDirectory()
     ) {
-      vscode.window.showInformationMessage(
-        `'project-history' found in: ${folderPath}`
-      );
       return true;
     }
   }
-  vscode.window.showInformationMessage(
-    "'project-history' folder not found in any workspace folder."
-  );
+  vscode.window.showErrorMessage("'work-logs' folder not found");
   return false;
 }
 

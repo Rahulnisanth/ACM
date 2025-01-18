@@ -27,6 +27,14 @@ Alternatively, you can install it directly from the command palette by typing `e
 
 After installation, you can configure the extension via the **VS Code settings** or using the command palette. Here's how you can configure different aspects of the extension:
 
+### Start the Auto-Committer
+
+To start the auto-commit process:
+
+1. Open the command palette again.
+2. Type and select **"Start the Auto-Commit extension"**.
+3. The extension will begin monitoring your workspace and commit changes at the set intervals.
+
 ### Set Auto-Commit Time Duration
 
 To configure the interval at which the extension commits automatically:
@@ -37,19 +45,11 @@ To configure the interval at which the extension commits automatically:
 
 This will set how often the extension will automatically commit your changes.
 
-### Start the Auto-Committer
-
-To start the auto-commit process:
-
-1. Open the command palette again.
-2. Type and select **"Start the Auto-Commit extension"**.
-3. The extension will begin monitoring your workspace and commit changes at the set intervals.
-
 ## Commands
 
 **Auto Commit Mate** offers two primary commands:
 
-### `extension.startAutoCommitter`
+### `extension.startAutoCommitting`
 
 Starts the auto-commit process. Once started, ACM will automatically commit changes in your workspace at regular intervals.
 

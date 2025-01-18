@@ -6,15 +6,18 @@ const getWorkspacePath = require("../pkg/common/getWorkspacePath");
 const startProjectTracking = require("../features/projectTracking/startProjectTracking");
 const connectGitRepo = require("../features/projectTracking/connectGitRepo");
 const showTimeDurationSelector = require("./showTimeDurationSelector");
-
-// Entry point of the extension
-async function startAutoCommitter() {
+/**
+ * Entry point of the extension
+ */
+async function startAutoCommitting() {
   const folderPath = await getWorkspacePath();
   // Getting the duration from user
   const duration = await showTimeDurationSelector();
   // Edge case: No folder is opened on vs-code
   if (!folderPath) {
-    vscode.window.showInformationMessage("No workspace folder is open.");
+    vscode.window.showInformationMessage(
+      "No workspace folder is opened for auto-committing."
+    );
     return;
   }
   try {
@@ -26,7 +29,7 @@ async function startAutoCommitter() {
       // Check for the history tracking folder
       const hasProjectHistoryFolder = await checkHistoryFolder();
       if (!hasProjectHistoryFolder) {
-        // Ask permission from user to create `project-history` folder
+        // Ask permission from user to create `work-logs` folder
         const startTracking = await vscode.window.showInformationMessage(
           "Would you like to track the logs for the project?",
           "Yes",
@@ -53,9 +56,10 @@ async function startAutoCommitter() {
       await connectGitRepo();
     }
   } catch (error) {
-    console.error("Error in startAutoCommitter:", error);
+    console.error("Error while Auto-Committing:", error);
     await connectGitRepo();
+    vscode.window.showErrorMessage("Error in occurred while Auto-Committing");
   }
 }
 
-module.exports = startAutoCommitter;
+module.exports = startAutoCommitting;

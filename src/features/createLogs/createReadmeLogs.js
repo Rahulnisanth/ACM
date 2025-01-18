@@ -6,7 +6,12 @@ const formatDate = require("../../pkg/formats/formatDate");
 const formatTime = require("../../pkg/formats/formatTime");
 const formatReadme = require("../../pkg/formats/formatReadme");
 const commitAndPush = require("../autoCommit/commitAndPush");
-
+/**
+ * Create readme logs and pushes them into the git repo
+ * @param {string} currentProjectPath - Path to the local root folder.
+ * @param {string} projectHistoryPath - Path to the `work-logs` folder.
+ * @param {int} duration - User selected time duration
+ */
 function createReadmeLogs(currentProjectPath, projectHistoryPath, duration) {
   const date = formatDate(new Date());
   const startTime = formatTime(new Date());
@@ -27,7 +32,7 @@ function createReadmeLogs(currentProjectPath, projectHistoryPath, duration) {
   // Skip duplicate or nil change logs
   if (changes === lastLoggedChanges || changes === "No changes detected") {
     vscode.window.showInformationMessage(
-      "No new changes detected, Skipping log creation."
+      "No new changes detected, Skipped log creation."
     );
     return;
   }
@@ -37,7 +42,7 @@ function createReadmeLogs(currentProjectPath, projectHistoryPath, duration) {
 
   try {
     writeFileSync(filePath, logContent);
-    vscode.window.showInformationMessage(`Log file created: ${fileName}`);
+    // vscode.window.showInformationMessage(`Log file created: ${fileName}`);
     // Auto-committing the logs
     commitAndPush(currentProjectPath, [filePath, lastChangesFile]);
   } catch (error) {
