@@ -42,7 +42,6 @@ function createReadmeLogs(currentProjectPath, projectHistoryPath, duration) {
 
   try {
     writeFileSync(filePath, logContent);
-    // vscode.window.showInformationMessage(`Log file created: ${fileName}`);
     // Auto-committing the logs
     commitAndPush(currentProjectPath, [filePath, lastChangesFile]);
   } catch (error) {

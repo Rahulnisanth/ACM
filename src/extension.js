@@ -19,7 +19,7 @@ function activate(context) {
       if (duration) {
         const folderPath = await getWorkspacePath();
         if (folderPath) {
-          startProjectTracking(folderPath, duration * 60 * 1000);
+          startProjectTracking(folderPath, duration);
         }
       }
     }
