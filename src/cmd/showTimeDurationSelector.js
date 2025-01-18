@@ -4,7 +4,7 @@ const vscode = require("vscode");
  */
 async function showTimeDurationSelector() {
   const options = [
-    { label: "0.5 minute", value: 0.5 },
+    { label: "15 minute", value: 15 },
     { label: "30 minutes", value: 30 },
     { label: "45 minutes", value: 45 },
     { label: "60 minutes", value: 60 },
