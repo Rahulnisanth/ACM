@@ -4,7 +4,8 @@ const { join } = require("path");
 const getChanges = require("../../pkg/common/getChanges");
 const formatDate = require("../../pkg/formats/formatDate");
 const formatTime = require("../../pkg/formats/formatTime");
-const makeReadOnly = require("../../pkg/common/makeReadOnly");
+const formatReadme = require("../../pkg/formats/formatReadme");
+const commitAndPush = require("../autoCommitAndPush/commitAndPush");
 
 function createReadmeLogs(currentProjectPath, projectHistoryPath) {
   const date = formatDate(new Date());
@@ -16,7 +17,7 @@ function createReadmeLogs(currentProjectPath, projectHistoryPath) {
   const changes = getChanges(currentProjectPath);
 
   // Path for cached changes
-  const lastChangesFile = join(projectHistoryPath, "cached_changes.txt");
+  const lastChangesFile = join(projectHistoryPath, "cache.txt");
   let lastLoggedChanges = existsSync(lastChangesFile)
     ? readFileSync(lastChangesFile, "utf-8")
     : "";
@@ -30,13 +31,13 @@ function createReadmeLogs(currentProjectPath, projectHistoryPath) {
   }
   writeFileSync(lastChangesFile, changes);
 
-  const totalSummary = changes.split("\n").pop();
-  let logContent = `# Project Log\n\n## Date: ${date}\n## Time: ${startTime} to ${endTime}\n\n### Changes:\n${changes}\n\n### Summary:\n${totalSummary}`;
+  const logContent = formatReadme(changes, date, startTime, endTime);
 
   try {
     writeFileSync(filePath, logContent);
-    makeReadOnly(filePath);
     vscode.window.showInformationMessage(`Log file created: ${fileName}`);
+    // Auto-committing the logs
+    commitAndPush(currentProjectPath, [filePath, lastChangesFile]);
   } catch (error) {
     vscode.window.showErrorMessage(
       `Failed to create log file: ${error.message}`

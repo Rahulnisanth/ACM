@@ -18,6 +18,6 @@ function deactivate() {}
 
 module.exports = { activate, deactivate };
 
-// TODO: Automate the log file pushing to git repo
 // TODO: [medium] implement a feature to pause/play the tracking process
-// TODO: [high] make the tracking related folders and files uneditable by the user
+// TODO: [Approach]: Restore the file contents when user try to edit it!
+// TODO: [low/v2] implement a UI in sidebar for pause/play, tracked histories, etc...
