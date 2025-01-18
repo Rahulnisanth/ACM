@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Auto Commit Mate - ACM is a VS Code extension designed to help developers track their workflow and automatically generate detailed commit logs for each work session. This extension helps organize project history, track file changes, and push logs to GitHub without manual intervention.
+Auto Commit Mate - ACM is a VS Code extension designed to help developers track their workflow and automatically generate detailed commit logs for each work session. This extension helps organize project history, track file changes, and push logs to GitHub without manual intervention which upstreams the github contributions.
 
 ## Features
 
