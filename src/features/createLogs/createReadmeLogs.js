@@ -21,7 +21,7 @@ function createReadmeLogs(currentProjectPath, projectHistoryPath, duration) {
   // Path for cached changes
   const lastChangesFile = join(projectHistoryPath, "cache.txt");
   let lastLoggedChanges = existsSync(lastChangesFile)
-    ? readFileSync(lastChangesFile, "utf-8")
+    ? readFileSync(lastChangesFile, "utf")
     : "";
 
   // Skip duplicate or nil change logs

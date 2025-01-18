@@ -24,7 +24,7 @@ async function startAutoCommitter() {
     if (remoteAddress) {
       // if Git Remote Found ??
       // Check for the history tracking folder
-      const hasProjectHistoryFolder = await checkHistoryFolder(folderPath);
+      const hasProjectHistoryFolder = await checkHistoryFolder();
       if (!hasProjectHistoryFolder) {
         // Ask permission from user to create `project-history` folder
         const startTracking = await vscode.window.showInformationMessage(

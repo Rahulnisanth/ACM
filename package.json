@@ -1,10 +1,10 @@
 {
   "name": "auto-commit-mate",
   "displayName": "Auto Commit Mate - ACM",
-  "description": "A VS Code extension designed to help developers track their workflow and automatically generate detailed commit logs for each work session. This extension helps organize project history, track file changes, and push logs to GitHub without manual intervention which upstreams the github contributions",
-  "version": "0.0.1",
+  "description": "A VS Code extension designed to help developers track their workflow and automatically generate detailed commit logs for each work session. This extension helps organize project history, track file changes, and push logs to GitHub without manual intervention, which upstreams the GitHub contributions.",
+  "version": "1.0.0",
   "icon": "assets/extension-icon.png",
-  "publisher": "Team Insiders",
+  "publisher": "Rahulnisanth",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -42,5 +42,24 @@
   "dependencies": {
     "open": "^10.1.0",
     "vscode": "^1.1.37"
-  }
+  },
+  "categories": [
+    "Other",
+    "SCM Providers"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rahulnisanth/AutoCommitMate-ACM.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Rahulnisanth/AutoCommitMate-ACM/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "git",
+    "auto commit",
+    "vscode extension",
+    "productivity",
+    "workflow"
+  ]
 }

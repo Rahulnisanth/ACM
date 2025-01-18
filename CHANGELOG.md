@@ -1,9 +1,21 @@
-# Change Log
+# Changelog
 
-All notable changes to the "commit-mate" extension will be documented in this file.
+## [1.0.0] - 2025-01-18
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### Added
 
-## [Unreleased]
+- Initial release of **Auto Commit Mate (ACM)**.
+- Automatically commits changes in the workspace at set intervals.
+- Configurable commit time duration (in minutes).
+- Automatically pushes commits to GitHub with detailed commit messages.
+- Two primary commands:
+  - `extension.startAutoCommitter`: Starts the auto-commit process.
+  - `extension.setTimeDuration`: Sets the time duration between auto-commits.
 
-- Initial release
+### Fixed
+
+- N/A (First release)
+
+### Changed
+
+- N/A (First release)
