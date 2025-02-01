@@ -6,10 +6,11 @@ const getWorkspacePath = require("../pkg/common/getWorkspacePath");
 const startProjectTracking = require("../features/projectTracking/startProjectTracking");
 const connectGitRepo = require("../features/projectTracking/connectGitRepo");
 const showTimeDurationSelector = require("./showTimeDurationSelector");
+const createGlobalRepoIfNotExists = require("../features/createGRepo/createGlobalRepoIfNotExists");
 /**
  * Initializes the process of auto-committing the project.
  */
-async function startAutoCommitting() {
+async function startAutoCommitting(context) {
   const folderPath = await getWorkspacePath();
   // Get the time duration for auto-committing
   const duration = await showTimeDurationSelector();
@@ -25,6 +26,8 @@ async function startAutoCommitting() {
     // Check if the project is connected to a Git remote
     const remoteAddress = getRemoteAddress(folderPath);
     if (remoteAddress) {
+      // Create a global repository if it doesn't exist
+      await createGlobalRepoIfNotExists(context);
       // Check if the project history folder exists
       const hasProjectHistoryFolder = await checkHistoryFolder();
       if (!hasProjectHistoryFolder) {
@@ -36,7 +39,7 @@ async function startAutoCommitting() {
         );
         if (startTracking === "Yes") {
           // Start
-          startProjectTracking(folderPath, duration);
+          startProjectTracking(context, folderPath, duration, remoteAddress);
           vscode.window.showInformationMessage("Started tracking logs..");
         } else {
           // Decline
@@ -44,7 +47,7 @@ async function startAutoCommitting() {
         }
       } else {
         // if `project-folder` exists
-        startProjectTracking(folderPath, duration);
+        startProjectTracking(context, folderPath, duration, remoteAddress);
       }
     } else {
       // Connect the project to a Git remote
@@ -53,7 +56,7 @@ async function startAutoCommitting() {
   } catch (error) {
     console.error("Error while Auto-Committing:", error);
     await connectGitRepo();
-    vscode.window.showErrorMessage("Error in occurred while Auto-Committing");
+    vscode.window.showErrorMessage("Error occurred. Please try again.");
   }
 }
 

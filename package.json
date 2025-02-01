@@ -2,7 +2,7 @@
   "name": "auto-commit-mate",
   "displayName": "Auto Commit Mate - ACM",
   "description": "Automates tracking workflow, pushes changes to GitHub and enhances GitHub contributions without manual intervention.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "icon": "assets/extension-icon.png",
   "publisher": "Rahulnisanth",
   "engines": {
@@ -15,6 +15,22 @@
   "main": "./src/extension.js",
   "type": "commonjs",
   "contributes": {
+    "configuration": {
+      "title": "Auto Commit Mate - ACM",
+      "properties": {
+        "autoCommitMate.githubUsername": {
+          "type": "string",
+          "default": "",
+          "description": "GitHub Username for Auto Commit Mate"
+        },
+        "autoCommitMate.githubToken": {
+          "type": "string",
+          "default": "",
+          "description": "GitHub Personal Access Token (PAT)",
+          "scope": "machine"
+        }
+      }
+    },
     "commands": [
       {
         "command": "extension.startAutoCommitting",
@@ -24,7 +40,19 @@
         "command": "extension.setTimeDuration",
         "title": "Set time duration for auto-committing logs"
       }
-    ]
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "extension.startAutoCommitting",
+          "title": "Start the Auto-Commit extension"
+        },
+        {
+          "command": "extension.setTimeDuration",
+          "title": "Set time duration for auto-committing logs"
+        }
+      ]
+    }
   },
   "scripts": {
     "lint": "eslint .",
@@ -39,7 +67,8 @@
     "@vscode/test-electron": "^2.4.1",
     "eslint": "^9.16.0",
     "open": "^10.1.0",
-    "vscode": "^1.1.37"
+    "vscode": "^1.1.37",
+    "axios": "^1.7.9"
   },
   "dependencies": {},
   "categories": [

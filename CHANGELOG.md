@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.5] - 2025-02-01
+## [1.0.6] - 2025-02-02
 
 ### Added
 
@@ -11,6 +11,8 @@
 - Two primary commands:
   - `extension.startAutoCommitting`: Starts the auto-commit process.
   - `extension.setTimeDuration`: Sets the time duration between auto-commits.
+- **Global Repository Support**: Commits are now also pushed to a central `Activity-Logger` GitHub repository.
+- GitHub Personal Access Token (PAT) authentication for seamless integration with GitHub.
 
 ### Fixed
 
@@ -18,5 +20,6 @@
 
 ### Changed
 
-- Added quick selector on the mount of the extension
-- Updated the codebase comments
+- Added quick selector on the mount of the extension.
+- Updated the codebase comments to reflect the new features.
+- Improved GitHub integration to handle global repository logging.

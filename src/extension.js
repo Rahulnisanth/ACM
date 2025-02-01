@@ -14,7 +14,7 @@ function activate(context) {
     )
     .then((selection) => {
       if (selection === "Yes, let's go") {
-        startAutoCommitting();
+        startAutoCommitting(context);
       } else {
         vscode.window.showInformationMessage(
           "You can start auto-committing anytime by running the 'Start Auto-Committing' command."
@@ -26,7 +26,7 @@ function activate(context) {
   const startExtension = vscode.commands.registerCommand(
     "extension.startAutoCommitting",
     async () => {
-      await startAutoCommitting();
+      await startAutoCommitting(context);
     }
   );
 
@@ -36,9 +36,9 @@ function activate(context) {
     async () => {
       const duration = await showTimeDurationSelector();
       if (duration) {
-        const folderPath = await getWorkspacePath();
+        const folderPath = await getWorkspacePath(context);
         if (folderPath) {
-          startProjectTracking(folderPath, duration);
+          startProjectTracking(context, folderPath, duration);
         }
       }
     }

@@ -7,21 +7,29 @@ const createReadmeLogs = require("../createLogs/createReadmeLogs");
  * @param {string} currentProjectPath - Path to the local root folder.
  * @param {int} duration - User selected time duration.
  */
-function startProjectTracking(currentProjectPath, duration) {
-  const projectHistoryPath = join(currentProjectPath, "work-logs");
+function startProjectTracking(
+  context,
+  currentProjectPath,
+  duration,
+  remoteAddress
+) {
+  const projectHistoryPath = join(currentProjectPath, "Activity-Logger");
   try {
     if (!existsSync(projectHistoryPath)) {
       mkdirSync(projectHistoryPath);
-      vscode.window.showInformationMessage(
-        `'work-logs' folder created successfully at ${projectHistoryPath}`
-      );
     }
     setInterval(() => {
-      createReadmeLogs(currentProjectPath, projectHistoryPath, duration);
+      createReadmeLogs(
+        context,
+        currentProjectPath,
+        projectHistoryPath,
+        duration,
+        remoteAddress
+      );
     }, duration * 60 * 1000);
   } catch (error) {
     vscode.window.showErrorMessage(
-      `Failed to create 'work-logs' folder: ${error.message}`
+      `Failed to create 'Activity-Logger' folder: ${error.message}`
     );
   }
 }

@@ -4,15 +4,23 @@ const { join } = require("path");
 const getChanges = require("../../pkg/common/getChanges");
 const formatDate = require("../../pkg/formats/formatDate");
 const formatTime = require("../../pkg/formats/formatTime");
-const formatReadme = require("../../pkg/formats/formatReadme");
-const commitAndPush = require("../autoCommit/commitAndPush");
+const commitAndPushToGlobalRepo = require("../autoCommit/commitAndPushToGlobalRepo");
+const commitAndPushToProjectRepo = require("../autoCommit/commitAndPushToProjectRepo");
+const formatGRepoLogs = require("../../pkg/formats/formatGRepoLogs");
+const formatPRepoLogs = require("../../pkg/formats/formatPRepoLogs");
 /**
- * Creates a README log file in the project history folder.
+ * Creates a README log file in the project history folder and Global Repo.
  * @param {string} currentProjectPath - Path to the local root folder.
  * @param {string} projectHistoryPath - Path to the project history folder.
  * @param {int} duration - User selected time duration.
  */
-function createReadmeLogs(currentProjectPath, projectHistoryPath, duration) {
+async function createReadmeLogs(
+  context,
+  currentProjectPath,
+  projectHistoryPath,
+  duration,
+  remoteAddress
+) {
   const date = formatDate(new Date());
   const startTime = formatTime(new Date());
   const endTime = formatTime(
@@ -26,7 +34,7 @@ function createReadmeLogs(currentProjectPath, projectHistoryPath, duration) {
   // Path for cached changes
   const lastChangesFile = join(projectHistoryPath, "cache.txt");
   let lastLoggedChanges = existsSync(lastChangesFile)
-    ? readFileSync(lastChangesFile, "utf")
+    ? readFileSync(lastChangesFile, "utf-8")
     : "";
 
   // Skip duplicate or nil change logs
@@ -38,12 +46,26 @@ function createReadmeLogs(currentProjectPath, projectHistoryPath, duration) {
   }
   writeFileSync(lastChangesFile, changes);
 
-  const logContent = formatReadme(changes, date, startTime, endTime);
+  // format the log content for the project repo
+  const pRepoLogContent = formatPRepoLogs(changes, date, startTime, endTime);
+  // format the log content for the global repo
+  const gRepoLogContent = formatGRepoLogs(
+    remoteAddress,
+    changes,
+    date,
+    startTime,
+    endTime
+  );
 
   try {
-    writeFileSync(filePath, logContent);
-    // Auto-committing the logs
-    commitAndPush(currentProjectPath, [filePath, lastChangesFile]);
+    writeFileSync(filePath, pRepoLogContent);
+    // Auto-committing the logs into the project repository
+    commitAndPushToProjectRepo(context, currentProjectPath, [
+      filePath,
+      lastChangesFile,
+    ]);
+    // Auto-committing the logs into the global repository
+    await commitAndPushToGlobalRepo(context, fileName, gRepoLogContent);
   } catch (error) {
     vscode.window.showErrorMessage(
       `Failed to create log file: ${error.message}`

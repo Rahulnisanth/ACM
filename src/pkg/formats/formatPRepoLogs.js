@@ -1,11 +1,11 @@
 // Purpose: Format the changes, date, start time, and end time into a readable format for the README.md file.
-function formatReadme(changes, date, startTime, endTime) {
+function formatPRepoLogs(changes, date, startTime, endTime) {
   const changesArray = changes.trim().split("\n");
 
   const totalSummary = changesArray.pop();
 
   const logContent = `
-**⚠️ Warning:** Avoid interacting with the \`work-logs/*\` folder and \`cache.txt\` file directly.
+**⚠️ Warning:** Avoid interacting with the \`Activity-Logger/*\` folder and \`cache.txt\` file directly.
 
 # Project Logs
 
@@ -23,4 +23,4 @@ ${totalSummary}
   return logContent.trim();
 }
 
-module.exports = formatReadme;
+module.exports = formatPRepoLogs;

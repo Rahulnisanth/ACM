@@ -5,7 +5,7 @@ const vscode = require("vscode");
  * @param {string} repoPath - Path to the local root folder.
  * @param {Array} files - List of files to be committed.
  */
-function commitAndPush(repoPath, files) {
+function commitAndPushToProjectRepo(context, repoPath, files) {
   try {
     files.forEach((file) => {
       execSync(`git add "${file}"`, { cwd: repoPath });
@@ -15,10 +15,6 @@ function commitAndPush(repoPath, files) {
     execSync(`git commit -m "${commitMessage}"`, { cwd: repoPath });
 
     execSync("git push", { cwd: repoPath });
-
-    vscode.window.showInformationMessage(
-      "✅ Workflow logs successfully dumped into GitHub"
-    );
   } catch (error) {
     vscode.window.showErrorMessage(
       `⚠️ Failed to push logs to GitHub: ${error.message}`
@@ -26,4 +22,4 @@ function commitAndPush(repoPath, files) {
   }
 }
 
-module.exports = commitAndPush;
+module.exports = commitAndPushToProjectRepo;

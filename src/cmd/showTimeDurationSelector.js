@@ -7,7 +7,6 @@ async function showTimeDurationSelector() {
     { label: "⏰ 15 minutes", value: 15 },
     { label: "⏰ 30 minutes", value: 30 },
     { label: "⏰ 45 minutes", value: 45 },
-    { label: "⏰ 60 minutes", value: 60 },
   ];
 
   const selectedOption = await vscode.window.showQuickPick(
@@ -21,10 +20,6 @@ async function showTimeDurationSelector() {
     const duration = options.find(
       (option) => option.label === selectedOption
     ).value;
-
-    vscode.window.showInformationMessage(
-      `✅ You've selected ${selectedOption} for auto-committing the logs!`
-    );
 
     return duration;
   }
