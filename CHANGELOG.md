@@ -1,10 +1,10 @@
 # Changelog
 
-## [1.0.4] - 2025-02-01
+## [1.0.5] - 2025-02-01
 
 ### Added
 
-- Initial release of **Auto Commit Mate (ACM)**.
+- Latest release of **Auto Commit Mate (ACM)**.
 - Automatically commits changes in the workspace at set intervals.
 - Configurable commit time duration (in minutes).
 - Automatically pushes commits to GitHub with detailed commit messages.
@@ -14,8 +14,9 @@
 
 ### Fixed
 
-- N/A (First release)
+- N/A (Latest release)
 
 ### Changed
 
-- N/A (First release)
+- Added quick selector on the mount of the extension
+- Updated the codebase comments

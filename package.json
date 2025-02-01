@@ -2,7 +2,7 @@
   "name": "auto-commit-mate",
   "displayName": "Auto Commit Mate - ACM",
   "description": "Automates tracking workflow, pushes changes to GitHub and enhances GitHub contributions without manual intervention.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "icon": "assets/extension-icon.png",
   "publisher": "Rahulnisanth",
   "engines": {
@@ -48,10 +48,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Rahulnisanth/AutoCommitMate-ACM.git"
+    "url": "https://github.com/Rahulnisanth/ACM.git"
   },
   "bugs": {
-    "url": "https://github.com/Rahulnisanth/AutoCommitMate-ACM/issues"
+    "url": "https://github.com/Rahulnisanth/ACM/issues"
   },
   "license": "MIT",
   "keywords": [
