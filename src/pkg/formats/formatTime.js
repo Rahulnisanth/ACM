@@ -1,8 +1,4 @@
-/**
- * Formats the Time to this format `11:00 PM/AM`
- * @param {Date} - date
- * @param {string} returns - formattedTime
- */
+// formatTime is a formatting function that is used to format the time in a readable format.
 function formatTime(date) {
   const formattedTime = date.toLocaleString("en-US", {
     hour: "numeric",

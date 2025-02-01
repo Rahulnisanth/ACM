@@ -1,7 +1,8 @@
 const { execSync } = require("child_process");
 /**
- * Dynamically captures the changes using `git diff --stat`
- * @param {string} currentProjectPath - Path to the local root folder.
+ * Get the changes in the source code.
+ * @param {string} currentProjectPath - Path to the current project.
+ * @returns {string} - Changes in the source code.
  */
 function getChanges(currentProjectPath) {
   try {

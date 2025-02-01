@@ -1,7 +1,5 @@
 const vscode = require("vscode");
-/**
- * Connects the current folder to the GitHub repository via the SCM.
- */
+// *Connects the workspace to a GitHub repository.
 async function connectGitRepo() {
   const createRepo = await vscode.window.showInformationMessage(
     "This workspace is not connected to GitHub. Would you like to create a repository?",

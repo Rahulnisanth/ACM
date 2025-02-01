@@ -3,7 +3,7 @@ const { mkdirSync, existsSync } = require("fs");
 const { join } = require("path");
 const createReadmeLogs = require("../createLogs/createReadmeLogs");
 /**
- * Initializes the process of tracking the project using setInterval().
+ * Starts tracking the project by creating logs at regular intervals.
  * @param {string} currentProjectPath - Path to the local root folder.
  * @param {int} duration - User selected time duration.
  */

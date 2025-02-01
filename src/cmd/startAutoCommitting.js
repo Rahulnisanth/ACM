@@ -7,13 +7,13 @@ const startProjectTracking = require("../features/projectTracking/startProjectTr
 const connectGitRepo = require("../features/projectTracking/connectGitRepo");
 const showTimeDurationSelector = require("./showTimeDurationSelector");
 /**
- * Entry point of the extension
+ * Initializes the process of auto-committing the project.
  */
 async function startAutoCommitting() {
   const folderPath = await getWorkspacePath();
-  // Getting the duration from user
+  // Get the time duration for auto-committing
   const duration = await showTimeDurationSelector();
-  // Edge case: No folder is opened on vs-code
+  // Check if the workspace folder is opened
   if (!folderPath) {
     vscode.window.showInformationMessage(
       "No workspace folder is opened for auto-committing."
@@ -22,37 +22,32 @@ async function startAutoCommitting() {
   }
   try {
     execSync("git rev-parse --is-inside-work-tree", { cwd: folderPath });
-    // Get the git remote address
+    // Check if the project is connected to a Git remote
     const remoteAddress = getRemoteAddress(folderPath);
     if (remoteAddress) {
-      // if Git Remote Found ??
-      // Check for the history tracking folder
+      // Check if the project history folder exists
       const hasProjectHistoryFolder = await checkHistoryFolder();
       if (!hasProjectHistoryFolder) {
-        // Ask permission from user to create `work-logs` folder
+        // if `project-folder` doesn't exists
         const startTracking = await vscode.window.showInformationMessage(
           "Would you like to track the logs for the project?",
           "Yes",
           "No"
         );
         if (startTracking === "Yes") {
-          // if user permits ??
-          // Handle automated log tracking
+          // Start
           startProjectTracking(folderPath, duration);
           vscode.window.showInformationMessage("Started tracking logs..");
         } else {
-          // if user not permits ??
-          // End
+          // Decline
           vscode.window.showInformationMessage("Tracking logs declined.");
         }
       } else {
-        // if `project-folder` already exists
-        // Handle automated log tracking
+        // if `project-folder` exists
         startProjectTracking(folderPath, duration);
       }
     } else {
-      // if Git Remote not found ??
-      // Connect project to Git Remote
+      // Connect the project to a Git remote
       await connectGitRepo();
     }
   } catch (error) {

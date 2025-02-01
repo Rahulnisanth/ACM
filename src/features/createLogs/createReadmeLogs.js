@@ -7,10 +7,10 @@ const formatTime = require("../../pkg/formats/formatTime");
 const formatReadme = require("../../pkg/formats/formatReadme");
 const commitAndPush = require("../autoCommit/commitAndPush");
 /**
- * Create readme logs and pushes them into the git repo
+ * Creates a README log file in the project history folder.
  * @param {string} currentProjectPath - Path to the local root folder.
- * @param {string} projectHistoryPath - Path to the `work-logs` folder.
- * @param {int} duration - User selected time duration
+ * @param {string} projectHistoryPath - Path to the project history folder.
+ * @param {int} duration - User selected time duration.
  */
 function createReadmeLogs(currentProjectPath, projectHistoryPath, duration) {
   const date = formatDate(new Date());

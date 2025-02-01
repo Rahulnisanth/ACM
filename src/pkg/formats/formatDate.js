@@ -1,8 +1,4 @@
-/**
- * Formats the Date to this format `18 Jan 2025`
- * @param {Date} - date
- * @param {string} returns - formattedDate
- */
+// This function takes a date object and returns a formatted date string in the format "DD MMM YYYY".
 function formatDate(date) {
   const formattedDate = date.toLocaleDateString("en-US", {
     day: "2-digit",

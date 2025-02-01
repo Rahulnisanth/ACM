@@ -1,8 +1,8 @@
 const { execSync } = require("child_process");
 /**
- * Captures the remote address
- * @param {string} folderPath - Path to the local root folder.
- * @param {string} returns - Remote address of the passed folder if exists.
+ * Get the remote address of the Git repository.
+ * @param {string} folderPath - Path to the folder.
+ * @returns {string} - Remote address of the Git repository.
  */
 function getRemoteAddress(folderPath) {
   try {

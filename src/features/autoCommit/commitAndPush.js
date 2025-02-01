@@ -1,9 +1,9 @@
 const { execSync } = require("child_process");
 const vscode = require("vscode");
 /**
- * Commits and pushes changes to the GitHub repository.
- * @param {string} repoPath - Path to the local Git repository.
- * @param {string[]} files - Files to be committed.
+ * Commits the changes and pushes them to the GitHub repository.
+ * @param {string} repoPath - Path to the local root folder.
+ * @param {Array} files - List of files to be committed.
  */
 function commitAndPush(repoPath, files) {
   try {

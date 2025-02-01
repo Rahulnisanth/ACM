@@ -1,10 +1,4 @@
-/**
- * Formats the log contents for teh auto-generated readme file
- * @param {string[]} - Changes from the `git diff --stat` cmd
- * @param {string} - date
- * @param {string} - startTime
- * @param {string} - endTime
- */
+// Purpose: Format the changes, date, start time, and end time into a readable format for the README.md file.
 function formatReadme(changes, date, startTime, endTime) {
   const changesArray = changes.trim().split("\n");
 

@@ -1,9 +1,7 @@
 const vscode = require("vscode");
 const { join } = require("path");
 const { existsSync, lstatSync } = require("fs");
-/**
- * Checks whether the project history folders exists or not.
- */
+// *Checks if the 'work-logs' folder exists in the workspace.
 async function checkHistoryFolder() {
   const workspaceFolders = vscode.workspace.workspaceFolders;
   if (!workspaceFolders || workspaceFolders.length === 0) {

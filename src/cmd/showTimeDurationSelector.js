@@ -4,16 +4,16 @@ const vscode = require("vscode");
  */
 async function showTimeDurationSelector() {
   const options = [
-    { label: "15 minute", value: 15 },
-    { label: "30 minutes", value: 30 },
-    { label: "45 minutes", value: 45 },
-    { label: "60 minutes", value: 60 },
+    { label: "⏰ 15 minutes", value: 15 },
+    { label: "⏰ 30 minutes", value: 30 },
+    { label: "⏰ 45 minutes", value: 45 },
+    { label: "⏰ 60 minutes", value: 60 },
   ];
 
   const selectedOption = await vscode.window.showQuickPick(
     options.map((option) => option.label),
     {
-      placeHolder: "Select a timer duration for auto-committing logs",
+      placeHolder: "🕒 Select a time duration for auto-committing the logs",
     }
   );
 
@@ -23,11 +23,16 @@ async function showTimeDurationSelector() {
     ).value;
 
     vscode.window.showInformationMessage(
-      `✅ Selected ${selectedOption} for auto-committing the logs`
+      `✅ You've selected ${selectedOption} for auto-committing the logs!`
     );
 
     return duration;
   }
+
+  vscode.window.showInformationMessage(
+    "🔔 Default duration of 30 minutes is set for auto-committing logs."
+  );
+
   return 30; // Setting 30 minutes by default
 }
 
