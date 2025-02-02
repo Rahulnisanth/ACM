@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.6] - 2025-02-02
+## [1.0.7] - 2025-02-02
 
 ### Added
 
@@ -23,3 +23,4 @@
 - Added quick selector on the mount of the extension.
 - Updated the codebase comments to reflect the new features.
 - Improved GitHub integration to handle global repository logging.
+- Fixed the startup bug
