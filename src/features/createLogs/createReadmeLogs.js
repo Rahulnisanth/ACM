@@ -60,7 +60,7 @@ async function createReadmeLogs(
   try {
     writeFileSync(filePath, pRepoLogContent);
     // Auto-committing the logs into the project repository
-    commitAndPushToProjectRepo(context, currentProjectPath, [
+    await commitAndPushToProjectRepo(context, currentProjectPath, [
       filePath,
       lastChangesFile,
     ]);

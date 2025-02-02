@@ -39,7 +39,12 @@ async function startAutoCommitting(context) {
         );
         if (startTracking === "Yes") {
           // Start
-          startProjectTracking(context, folderPath, duration, remoteAddress);
+          await startProjectTracking(
+            context,
+            folderPath,
+            duration,
+            remoteAddress
+          );
           vscode.window.showInformationMessage("Started tracking logs..");
         } else {
           // Decline
@@ -47,7 +52,12 @@ async function startAutoCommitting(context) {
         }
       } else {
         // if `project-folder` exists
-        startProjectTracking(context, folderPath, duration, remoteAddress);
+        await startProjectTracking(
+          context,
+          folderPath,
+          duration,
+          remoteAddress
+        );
       }
     } else {
       // Connect the project to a Git remote

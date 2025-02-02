@@ -13,9 +13,9 @@ function activate(context) {
       "Yes, let's go",
       "Not now"
     )
-    .then((selection) => {
+    .then(async (selection) => {
       if (selection === "Yes, let's go") {
-        startAutoCommitting(context);
+        await startAutoCommitting(context);
       } else {
         vscode.window.showInformationMessage(
           "You can start auto-committing anytime by running the 'Start Auto-Committing' command."
@@ -39,7 +39,7 @@ function activate(context) {
       if (duration) {
         const folderPath = await getWorkspacePath(context);
         if (folderPath) {
-          startProjectTracking(context, folderPath, duration);
+          await startProjectTracking(context, folderPath, duration);
         }
       }
     }

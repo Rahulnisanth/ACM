@@ -5,7 +5,7 @@ const vscode = require("vscode");
  * @param {string} repoPath - Path to the local root folder.
  * @param {Array} files - List of files to be committed.
  */
-function commitAndPushToProjectRepo(context, repoPath, files) {
+async function commitAndPushToProjectRepo(context, repoPath, files) {
   try {
     files.forEach((file) => {
       execSync(`git add "${file}"`, { cwd: repoPath });

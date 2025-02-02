@@ -7,7 +7,7 @@ const createReadmeLogs = require("../createLogs/createReadmeLogs");
  * @param {string} currentProjectPath - Path to the local root folder.
  * @param {int} duration - User selected time duration.
  */
-function startProjectTracking(
+async function startProjectTracking(
   context,
   currentProjectPath,
   duration,
@@ -18,8 +18,8 @@ function startProjectTracking(
     if (!existsSync(projectHistoryPath)) {
       mkdirSync(projectHistoryPath);
     }
-    setInterval(() => {
-      createReadmeLogs(
+    setInterval(async () => {
+      await createReadmeLogs(
         context,
         currentProjectPath,
         projectHistoryPath,
