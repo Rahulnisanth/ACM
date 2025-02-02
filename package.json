@@ -2,13 +2,14 @@
   "name": "auto-commit-mate",
   "displayName": "Auto Commit Mate - ACM",
   "description": "Automates tracking workflow, pushes changes to GitHub and enhances GitHub contributions without manual intervention.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "icon": "assets/extension-icon.png",
   "publisher": "Rahulnisanth",
   "engines": {
     "vscode": "^1.96.0"
   },
   "activationEvents": [
+    "*",
     "onStartupFinished",
     "workspaceContains:.git"
   ],
@@ -40,19 +41,7 @@
         "command": "extension.setTimeDuration",
         "title": "Set time duration for auto-committing logs"
       }
-    ],
-    "menus": {
-      "commandPalette": [
-        {
-          "command": "extension.startAutoCommitting",
-          "title": "Start the Auto-Commit extension"
-        },
-        {
-          "command": "extension.setTimeDuration",
-          "title": "Set time duration for auto-committing logs"
-        }
-      ]
-    }
+    ]
   },
   "scripts": {
     "lint": "eslint .",

@@ -5,6 +5,7 @@ const getWorkspacePath = require("./pkg/common/getWorkspacePath");
 const startProjectTracking = require("./features/projectTracking/startProjectTracking");
 
 function activate(context) {
+  console.log("✅ Auto Commit Mate extension activated!");
   // Prompt user on VS Code startup
   vscode.window
     .showInformationMessage(
