@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.9] - 2025-02-03
+## [1.2.0] - 2025-02-04
 
 ### Added
 
@@ -16,11 +16,11 @@
 
 ### Fixed
 
-- N/A (Latest release)
+- Startup bug
+- Codebase optimization
 
 ### Changed
 
 - Added quick selector on the mount of the extension.
 - Updated the codebase comments to reflect the new features.
 - Improved GitHub integration to handle global repository logging.
-- Fixed the startup bug

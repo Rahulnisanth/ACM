@@ -2,7 +2,7 @@ const vscode = require("vscode");
 const { join } = require("path");
 const { existsSync, lstatSync } = require("fs");
 // *Checks if the 'Activity-Logger' folder exists in the workspace.
-async function checkHistoryFolder() {
+async function getHistoryFolderStatus() {
   const workspaceFolders = vscode.workspace.workspaceFolders;
   if (!workspaceFolders || workspaceFolders.length === 0) {
     vscode.window.showInformationMessage("No workspace folder is open.");
@@ -22,4 +22,4 @@ async function checkHistoryFolder() {
   return false;
 }
 
-module.exports = checkHistoryFolder;
+module.exports = getHistoryFolderStatus;

@@ -1,6 +1,6 @@
 const vscode = require("vscode");
 const axios = require("axios");
-const ensureGitHubAuth = require("../../auth/creds");
+const ensureGitHubAuth = require("../../auth/credentials");
 /**
  * Creates the global `Activity-Logger` repository if it doesn't exist.
  */

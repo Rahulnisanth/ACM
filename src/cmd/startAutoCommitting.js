@@ -1,6 +1,6 @@
 const vscode = require("vscode");
 const { execSync } = require("child_process");
-const checkHistoryFolder = require("./checkHistoryFolder");
+const getHistoryFolderStatus = require("../pkg/common/getHistoryFolderStatus");
 const getRemoteAddress = require("../pkg/common/getRemoteAddress");
 const getWorkspacePath = require("../pkg/common/getWorkspacePath");
 const startProjectTracking = require("../features/projectTracking/startProjectTracking");
@@ -29,7 +29,7 @@ async function startAutoCommitting(context) {
       // Create a global repository if it doesn't exist
       await createGlobalRepoIfNotExists(context);
       // Check if the project history folder exists
-      const hasProjectHistoryFolder = await checkHistoryFolder();
+      const hasProjectHistoryFolder = await getHistoryFolderStatus();
       if (!hasProjectHistoryFolder) {
         // if `project-folder` doesn't exists
         const startTracking = await vscode.window.showInformationMessage(
