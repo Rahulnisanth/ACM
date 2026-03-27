@@ -1,13 +1,14 @@
-const vscode = require("vscode");
-const { writeFileSync, existsSync, readFileSync } = require("fs");
-const { join } = require("path");
-const getChanges = require("../../pkg/common/getChanges");
-const formatDate = require("../../pkg/formats/formatDate");
-const formatTime = require("../../pkg/formats/formatTime");
-const commitAndPushToGlobalRepo = require("../autoCommit/commitAndPushToGlobalRepo");
-const commitAndPushToProjectRepo = require("../autoCommit/commitAndPushToProjectRepo");
-const formatGRepoLogs = require("../../pkg/formats/formatGRepoLogs");
-const formatPRepoLogs = require("../../pkg/formats/formatPRepoLogs");
+const vscode = require('vscode');
+const { writeFileSync, existsSync, readFileSync } = require('fs');
+const { join } = require('path');
+const getChanges = require('../../pkg/common/getChanges');
+const formatDate = require('../../pkg/formats/formatDate');
+const formatTime = require('../../pkg/formats/formatTime');
+const commitAndPushToGlobalRepo = require('../autoCommit/commitAndPushToGlobalRepo');
+const commitAndPushToProjectRepo = require('../autoCommit/commitAndPushToProjectRepo');
+const formatGRepoLogs = require('../../pkg/formats/formatGRepoLogs');
+const formatPRepoLogs = require('../../pkg/formats/formatPRepoLogs');
+
 /**
  * Creates a README log file in the project history folder and Global Repo.
  * @param {string} currentProjectPath - Path to the local root folder.
@@ -19,12 +20,12 @@ async function createReadmeLogs(
   currentProjectPath,
   projectHistoryPath,
   duration,
-  remoteAddress
+  remoteAddress,
 ) {
   const date = formatDate(new Date());
   const startTime = formatTime(new Date());
   const endTime = formatTime(
-    new Date(new Date().getTime() + duration * 60 * 1000)
+    new Date(new Date().getTime() + duration * 60 * 1000),
   );
 
   const fileName = `[${date}: ${startTime} to ${endTime}].md`;
@@ -32,15 +33,15 @@ async function createReadmeLogs(
   const changes = getChanges(currentProjectPath);
 
   // Path for cached changes
-  const lastChangesFile = join(projectHistoryPath, "cache.txt");
+  const lastChangesFile = join(projectHistoryPath, 'cache.txt');
   let lastLoggedChanges = existsSync(lastChangesFile)
-    ? readFileSync(lastChangesFile, "utf-8")
-    : "";
+    ? readFileSync(lastChangesFile, 'utf-8')
+    : '';
 
   // Skip duplicate or nil change logs
-  if (changes === lastLoggedChanges || changes === "No changes detected") {
+  if (changes === lastLoggedChanges || changes === 'No changes detected') {
     vscode.window.showInformationMessage(
-      "No new changes detected, Skipped log creation."
+      'No new changes detected, Skipped log creation.',
     );
     return;
   }
@@ -54,7 +55,7 @@ async function createReadmeLogs(
     changes,
     date,
     startTime,
-    endTime
+    endTime,
   );
 
   try {
@@ -68,7 +69,7 @@ async function createReadmeLogs(
     await commitAndPushToGlobalRepo(context, fileName, gRepoLogContent);
   } catch (error) {
     vscode.window.showErrorMessage(
-      `Failed to create log file: ${error.message}`
+      `Failed to create log file: ${error.message}`,
     );
   }
 }

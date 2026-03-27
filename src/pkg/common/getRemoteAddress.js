@@ -1,4 +1,5 @@
-const { execSync } = require("child_process");
+const { execSync } = require('child_process');
+
 /**
  * Get the remote address of the Git repository.
  * @param {string} folderPath - Path to the folder.
@@ -6,11 +7,11 @@ const { execSync } = require("child_process");
  */
 function getRemoteAddress(folderPath) {
   try {
-    return execSync("git remote get-url origin", { cwd: folderPath })
+    return execSync('git remote get-url origin', { cwd: folderPath })
       .toString()
       .trim();
   } catch (err) {
-    console.log("Error capturing the remote address: ", err);
+    console.log('Error capturing the remote address: ', err);
     return null;
   }
 }

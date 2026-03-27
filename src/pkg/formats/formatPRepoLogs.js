@@ -1,6 +1,7 @@
-// Purpose: Format the changes, date, start time, and end time into a readable format for the README.md file.
+// Purpose: Format the changes, date, start time, and end time
+// into a readable format for the README.md file.
 function formatPRepoLogs(changes, date, startTime, endTime) {
-  const changesArray = changes.trim().split("\n");
+  const changesArray = changes.trim().split('\n');
 
   const totalSummary = changesArray.pop();
 
@@ -14,7 +15,7 @@ function formatPRepoLogs(changes, date, startTime, endTime) {
 ## Time: ${startTime} to ${endTime}
 
 ### Changes:
-${changesArray.map((change) => `- ${change}`).join("\n")}
+${changesArray.map((change) => `- ${change}`).join('\n')}
 
 ### Summary:
 ${totalSummary}

@@ -35,7 +35,6 @@ After installation, you need to configure the extension by adding your GitHub us
 To connect ACM with your GitHub account and authenticate using a GitHub Personal Access Token (PAT), follow these steps:
 
 1. **Generate a GitHub Personal Access Token (PAT)**:
-
    - Go to your GitHub account, and navigate to [GitHub Personal Access Tokens settings](https://github.com/settings/tokens).
    - Click on **Generate new token**.
    - Provide a token name and select the following scopes:

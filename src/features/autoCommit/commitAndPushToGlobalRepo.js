@@ -1,6 +1,6 @@
-const vscode = require("vscode");
-const axios = require("axios");
-const ensureGitHubAuth = require("../../auth/credentials");
+const vscode = require('vscode');
+const axios = require('axios');
+const ensureGitHubAuth = require('../../auth/credentials');
 
 /**
  * Pushes a log file to the `Activity-Logger` GitHub repository.
@@ -10,12 +10,12 @@ async function commitAndPushToGlobalRepo(context, fileName, content) {
   if (!credentials) return;
 
   const { username, token } = credentials;
-  const repoName = "Activity-Logger";
+  const repoName = 'Activity-Logger';
   const sanitizedFileName = encodeURIComponent(fileName);
   const apiUrl = `https://api.github.com/repos/${username}/${repoName}/contents/${sanitizedFileName}`;
   const headers = {
     Authorization: `token ${token}`,
-    Accept: "application/vnd.github.v3+json",
+    Accept: 'application/vnd.github.v3+json',
   };
 
   try {
@@ -32,7 +32,7 @@ async function commitAndPushToGlobalRepo(context, fileName, content) {
     // Commit the new file
     const commitData = {
       message: `chore: update work log (${fileName})`,
-      content: Buffer.from(content).toString("base64"),
+      content: Buffer.from(content).toString('base64'),
       sha,
     };
 

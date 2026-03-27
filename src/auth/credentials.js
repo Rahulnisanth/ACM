@@ -1,4 +1,4 @@
-const vscode = require("vscode");
+const vscode = require('vscode');
 
 /**
  * Prompt user for GitHub username and access token.
@@ -6,25 +6,25 @@ const vscode = require("vscode");
  */
 async function promptForGitHubCredentials() {
   const username = await vscode.window.showInputBox({
-    prompt: "Enter your GitHub username",
-    placeHolder: "github-username",
+    prompt: 'Enter your GitHub username',
+    placeHolder: 'github-username',
     ignoreFocusOut: true,
   });
 
   if (!username) {
-    vscode.window.showErrorMessage("GitHub username is required.");
+    vscode.window.showErrorMessage('GitHub username is required.');
     return null;
   }
 
   const token = await vscode.window.showInputBox({
-    prompt: "Enter your GitHub Personal Access Token",
-    placeHolder: "github_pat_XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    prompt: 'Enter your GitHub Personal Access Token',
+    placeHolder: 'github_pat_XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
     password: true,
     ignoreFocusOut: true,
   });
 
   if (!token) {
-    vscode.window.showErrorMessage("GitHub-PAT token is required.");
+    vscode.window.showErrorMessage('GitHub-PAT token is required.');
     return null;
   }
 
@@ -35,16 +35,16 @@ async function promptForGitHubCredentials() {
  * Save GitHub credentials securely in VS Code's global state.
  */
 async function saveGitHubCredentials(context, username, token) {
-  await context.globalState.update("githubUsername", username);
-  await context.globalState.update("githubToken", token);
+  await context.globalState.update('githubUsername', username);
+  await context.globalState.update('githubToken', token);
 }
 
 /**
  * Retrieve stored GitHub credentials.
  */
 async function getGitHubCredentials(context) {
-  const username = context.globalState.get("githubUsername");
-  const token = context.globalState.get("githubToken");
+  const username = context.globalState.get('githubUsername');
+  const token = context.globalState.get('githubToken');
 
   if (!username || !token) {
     return null;
@@ -65,7 +65,7 @@ async function ensureGitHubAuth(context) {
       await saveGitHubCredentials(
         context,
         credentials.username,
-        credentials.token
+        credentials.token,
       );
     }
   }

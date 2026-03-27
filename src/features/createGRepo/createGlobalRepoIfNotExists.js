@@ -1,6 +1,7 @@
-const vscode = require("vscode");
-const axios = require("axios");
-const ensureGitHubAuth = require("../../auth/credentials");
+const vscode = require('vscode');
+const axios = require('axios');
+const ensureGitHubAuth = require('../../auth/credentials');
+
 /**
  * Creates the global `Activity-Logger` repository if it doesn't exist.
  */
@@ -11,10 +12,10 @@ async function createGlobalRepoIfNotExists(context) {
   const { username, token } = credentials;
   const headers = {
     Authorization: `token ${token}`,
-    Accept: "application/vnd.github.v3+json",
+    Accept: 'application/vnd.github.v3+json',
   };
 
-  const repoName = "Activity-Logger";
+  const repoName = 'Activity-Logger';
   const apiUrl = `https://api.github.com/repos/${username}/${repoName}`;
 
   try {
@@ -28,18 +29,18 @@ async function createGlobalRepoIfNotExists(context) {
         {
           name: repoName,
           description:
-            "Global Repository for tracking overall Activity-Logger.",
+            'Global Repository for tracking overall Activity-Logger.',
           private: false,
           auto_init: false,
         },
-        { headers }
+        { headers },
       );
       vscode.window.showInformationMessage(
-        `✅ Created global repository 'Activity-Logger'.`
+        `✅ Created global repository 'Activity-Logger'.`,
       );
     } else {
       vscode.window.showErrorMessage(
-        `❌ Failed to check/create repository: ${error.message}`
+        `❌ Failed to check/create repository: ${error.message}`,
       );
     }
   }

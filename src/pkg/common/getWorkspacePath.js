@@ -1,5 +1,6 @@
-const vscode = require("vscode");
-// *Returns the path of the current workspace folder.
+const vscode = require('vscode');
+
+// Returns the path of the current workspace folder.
 async function getWorkspacePath() {
   const workspaceFolders = vscode.workspace.workspaceFolders;
   if (workspaceFolders && workspaceFolders.length > 0) {
